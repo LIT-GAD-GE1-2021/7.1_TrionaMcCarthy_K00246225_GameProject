@@ -10,7 +10,7 @@ public class ExtraCodeDump : MonoBehaviour
 
     void GroundCheck()
     {
-        if (Physics.Raycast(transform.position, Vector3.down, 2f, groundLayer))
+        if (Physics2D.Raycast(transform.position, Vector3.down, 2f, groundLayer))
         {
             isGrounded = true;
         }
@@ -19,5 +19,29 @@ public class ExtraCodeDump : MonoBehaviour
             isGrounded = false;
         }
     }
+    RaycastHit2D hit;
+    hit = Physics2D.Raycast(transform.position, Vector2.down, 2f, groundLayer);
+    if(hit.collider !=null)
+
+      void OnCollisionEnter2D(Collision2D collider)
+    {
+        if(collider.gameObject.tag == "Ground")
+        {
+            animator.SetBool("isGrounded", true);
+            isGrounded = true;
+        }
+    }
+
+    void OnCollisionExit2D(Collision2D collider)
+    {
+        if(collider.gameObject.tag == "Ground")
+        {
+            animator.SetBool("isGrounded", false);
+            isGrounded = false;
+        }
+    }
+
+
+
     */
 }

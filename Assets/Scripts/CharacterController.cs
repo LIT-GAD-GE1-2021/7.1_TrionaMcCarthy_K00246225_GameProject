@@ -63,8 +63,6 @@ public class CharacterController : MonoBehaviour
         }
     }
 
-  
-
     RaycastHit2D hit;
     void GroundCheck()
     {
