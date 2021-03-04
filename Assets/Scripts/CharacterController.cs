@@ -15,7 +15,6 @@ public class CharacterController : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    // Update is called once per frame
     void Update()
     {
         Walk();
@@ -59,38 +58,27 @@ public class CharacterController : MonoBehaviour
         {
             animator.SetTrigger("Jump");
             character.velocity = new Vector2(character.velocity.x, 17);
-            //isGrounded = false;
+            isGrounded = false;
             animator.SetBool("isGrounded", false);
         }
     }
 
-    void OnCollisionEnter2D(Collision2D collider)
-    {
-        //if(collider.gameObject.tag = "Ground")
-        {
-            //animator.SetBool("isGrounded", true);
-            //isGrounded = true;
-        }
-    }
+  
 
-    void OnCollisionExit2D(Collision2D collider)
-    {
-        //if(collider.gameObject.tag = "Ground")
-        {
-            //animator.SetBool("isGrounded", false);
-            //isGrounded = false;
-        }
-    }
-
+    RaycastHit2D hit;
     void GroundCheck()
     {
-        if(Physics.Raycast(transform.position, Vector3.down, 2f, groundLayer))
+        hit = Physics2D.Raycast(transform.position, Vector2.down, 2f, groundLayer);
+        if (hit.collider != null)
         {
             isGrounded = true;
+            animator.SetBool("isGrounded", true);
         }
         else
         {
             isGrounded = false;
+            animator.SetBool("isGrounded", false);
         }
     }
+
 }
