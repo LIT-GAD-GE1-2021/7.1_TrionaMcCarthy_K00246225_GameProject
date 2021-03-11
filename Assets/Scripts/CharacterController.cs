@@ -22,7 +22,6 @@ public class CharacterController : MonoBehaviour
         GroundCheck();
         vspeed = character.velocity.y;
         animator.SetFloat("vSpeed", vspeed);
-        animator.SetBool("isGrounded", isGrounded);
     }
 
     void Walk()
@@ -57,7 +56,7 @@ public class CharacterController : MonoBehaviour
         if (Input.GetKeyDown("up") && isGrounded)
         {
             animator.SetTrigger("Jump");
-            character.velocity = new Vector2(character.velocity.x, 17);
+            character.velocity = new Vector2(character.velocity.x, 19);
             isGrounded = false;
             animator.SetBool("isGrounded", false);
         }
