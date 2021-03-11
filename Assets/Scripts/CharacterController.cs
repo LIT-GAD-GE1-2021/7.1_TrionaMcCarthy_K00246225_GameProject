@@ -22,6 +22,7 @@ public class CharacterController : MonoBehaviour
         GroundCheck();
         vspeed = character.velocity.y;
         animator.SetFloat("vSpeed", vspeed);
+        Debug.DrawRay(transform.position, Vector3.down, Color.green);
     }
 
     void Walk()
@@ -53,7 +54,7 @@ public class CharacterController : MonoBehaviour
 
     void Jump()
     {
-        if (Input.GetKeyDown("up") && isGrounded)
+        if (Input.GetKeyDown("up") && isGrounded || Input.GetKeyDown("c") && isGrounded)
         {
             animator.SetTrigger("Jump");
             character.velocity = new Vector2(character.velocity.x, 19);
@@ -65,7 +66,7 @@ public class CharacterController : MonoBehaviour
     RaycastHit2D hit;
     void GroundCheck()
     {
-        hit = Physics2D.Raycast(transform.position, Vector2.down, 2f, groundLayer);
+        hit = Physics2D.Raycast(transform.position, Vector2.down, 0.5f, groundLayer);
         if (hit.collider != null)
         {
             isGrounded = true;
