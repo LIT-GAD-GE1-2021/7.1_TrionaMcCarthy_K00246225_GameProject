@@ -17,12 +17,15 @@ public class CharacterController : MonoBehaviour
 
     void Update()
     {
-        Walk();
-        Jump();
-        GroundCheck();
-        vspeed = character.velocity.y;
-        animator.SetFloat("vSpeed", vspeed);
-        Debug.DrawRay(transform.position, Vector3.down, Color.green);
+        if(LevelManager.instance.gameOver == false)
+        {
+            Walk();
+            Jump();
+            GroundCheck();
+            vspeed = character.velocity.y;
+            animator.SetFloat("vSpeed", vspeed);
+        }
+       
     }
 
     void Walk()
@@ -76,6 +79,15 @@ public class CharacterController : MonoBehaviour
         {
             isGrounded = false;
             animator.SetBool("isGrounded", false);
+        }
+    }
+
+    void OnCollisionEnter2D(Collision2D collider)
+    {
+        if (collider.gameObject.tag == "Hazard")
+        {
+            //animator.SetTrigger("Hurt");
+            LevelManager.instance.playerHealth -= 1;
         }
     }
 
