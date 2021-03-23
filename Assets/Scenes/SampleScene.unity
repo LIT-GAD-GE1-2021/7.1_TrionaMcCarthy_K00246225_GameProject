@@ -689,10 +689,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e238abe441edfc478746eaaead9de92, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  healthText: {fileID: 526920068}
+  modeText: {fileID: 526920068}
   healthSlider: {fileID: 791673347}
   playerHealth: 5
   gameOver: 0
+  characterMode: 1
+  character: {fileID: 6587367556814106153}
 --- !u!4 &822638129
 Transform:
   m_ObjectHideFlags: 0

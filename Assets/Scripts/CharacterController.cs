@@ -24,8 +24,8 @@ public class CharacterController : MonoBehaviour
             GroundCheck();
             vspeed = character.velocity.y;
             animator.SetFloat("vSpeed", vspeed);
+            CharacterModeSwitch();
         }
-       
     }
 
     void Walk()
@@ -91,4 +91,22 @@ public class CharacterController : MonoBehaviour
         }
     }
 
+    void CharacterModeSwitch()
+    {
+        if(Input.GetKeyDown("z"))
+        {
+            LevelManager.instance.characterMode += 1;
+            if(LevelManager.instance.characterMode > 3)
+            {
+                LevelManager.instance.characterMode = 1;
+            }
+        }
+    }
+
+    public void Die()
+    {
+        Debug.Log("Game Over");
+        //animator.SetTrigger("Death");
+        //probably some other stuff idk yet
+    }
 }

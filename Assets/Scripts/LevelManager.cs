@@ -6,10 +6,12 @@ using UnityEngine.UI;
 public class LevelManager : MonoBehaviour
 {
     public static LevelManager instance;
-    public Text healthText;
+    public Text modeText;
     public Slider healthSlider;
     public int playerHealth = 5;
     public bool gameOver = false;
+    public int characterMode = 1;
+    public CharacterController character;
 
     // Start is called before the first frame update
     void Start()
@@ -24,14 +26,15 @@ public class LevelManager : MonoBehaviour
     {
         if(playerHealth > 0)
         {
-            healthText.text = "Health: " + playerHealth;
+            modeText.text = "Mode: " + characterMode;
             healthSlider.value = playerHealth;
         }
         else if(playerHealth == 0)
         {
-            healthText.text = "Game Over";
             healthSlider.value = 0;
+            playerHealth = -1;
             gameOver = true;
+            character.Die();
         }
     }
 }
