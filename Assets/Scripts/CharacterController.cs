@@ -87,7 +87,7 @@ public class CharacterController : MonoBehaviour
         if (collider.gameObject.tag == "Hazard")
         {
             //animator.SetTrigger("Hurt");
-            LevelManager.instance.playerHealth -= 1;
+            LevelManager.instance.playerHealth -= 0.1f;
         }
     }
 
