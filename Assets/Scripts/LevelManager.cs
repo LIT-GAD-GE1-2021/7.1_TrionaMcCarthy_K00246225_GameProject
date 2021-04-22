@@ -14,7 +14,7 @@ public class LevelManager : MonoBehaviour
     public GameObject WitchIcon;
     public GameObject SoldierIcon;
     public GameObject NinjaIcon;
-    int KeyCount = 0;
+    public int KeyCount = 0;
     public GameObject KeyUI;
 
     void Start()
@@ -68,10 +68,14 @@ public class LevelManager : MonoBehaviour
 
     public void KeyUse()
     {
-        KeyCount--;
-        if(KeyCount<=0)
+        if(KeyCount > 0)
         {
-            KeyUI.SetActive(false);
+            KeyCount--;
+            if (KeyCount <= 0)
+            {
+                KeyUI.SetActive(false);
+            }
         }
+        
     }
 }

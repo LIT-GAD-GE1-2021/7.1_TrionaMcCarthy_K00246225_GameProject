@@ -648,6 +648,7 @@ MonoBehaviour:
   WitchIcon: {fileID: 1348689804}
   SoldierIcon: {fileID: 776474929}
   NinjaIcon: {fileID: 1829025983}
+  KeyCount: 0
   KeyUI: {fileID: 214871287}
 --- !u!4 &822638129
 Transform:
@@ -824,6 +825,7 @@ GameObject:
   - component: {fileID: 1427789401}
   - component: {fileID: 1427789400}
   - component: {fileID: 1427789402}
+  - component: {fileID: 1427789404}
   - component: {fileID: 1427789403}
   m_Layer: 0
   m_Name: TestCircle
@@ -912,7 +914,7 @@ CircleCollider2D:
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 1.28
+  m_Radius: 1.27
 --- !u!114 &1427789403
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -922,9 +924,35 @@ MonoBehaviour:
   m_GameObject: {fileID: 1427789399}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7a63fb3ba81ab0a4dad5cde596801462, type: 3}
+  m_Script: {fileID: 11500000, guid: a86f4fada76489740bc7d0da878b2641, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!61 &1427789404
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1427789399}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.56, y: 2.56}
+    newSize: {x: 2.56, y: 2.56}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.8, y: 3.16}
+  m_EdgeRadius: 0
 --- !u!1 &1690588944
 GameObject:
   m_ObjectHideFlags: 0
