@@ -16,6 +16,7 @@ public class LevelManager : MonoBehaviour
     public GameObject NinjaIcon;
     public int KeyCount = 0;
     public GameObject KeyUI;
+    public int spellDamage = 1;
 
     void Start()
     {
