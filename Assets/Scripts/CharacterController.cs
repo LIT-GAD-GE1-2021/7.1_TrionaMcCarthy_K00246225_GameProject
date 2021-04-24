@@ -9,6 +9,9 @@ public class CharacterController : MonoBehaviour
     public bool isGrounded = false;
     public float vspeed;
     public LayerMask groundLayer;
+    bool facingRight = false;
+    public GameObject spell;
+    public Transform spellPosition;
 
     void Start()
     {
@@ -25,6 +28,7 @@ public class CharacterController : MonoBehaviour
             vspeed = character.velocity.y;
             animator.SetFloat("vSpeed", vspeed);
             CharacterModeSwitch();
+            Shoot();
         }
     }
 
@@ -37,6 +41,7 @@ public class CharacterController : MonoBehaviour
             scale.x = 0.75f;
             transform.localScale = scale;
             animator.SetFloat("Speed", 3);
+            facingRight = false;
         }
 
         if (Input.GetKey("right"))
@@ -46,6 +51,7 @@ public class CharacterController : MonoBehaviour
             scale.x = -0.75f;
             transform.localScale = scale;
             animator.SetFloat("Speed", 3);
+            facingRight = true;
         }
 
         if (Input.GetKeyUp("left") || Input.GetKeyUp("right"))
@@ -108,5 +114,27 @@ public class CharacterController : MonoBehaviour
         Debug.Log("Game Over");
         //animator.SetTrigger("Death");
         //probably some other stuff idk yet
+    }
+
+    void Shoot()
+    {
+        if (Input.GetKeyDown("space"))
+        {
+            if (facingRight == true)
+            {
+                GameObject spawnedSpell;
+                spawnedSpell = Instantiate(spell, spellPosition.position + new Vector3(1, 2, 0), Quaternion.identity);
+                SpellController script = spawnedSpell.GetComponent<SpellController>();
+                script.FireRight();
+            }
+            else if (facingRight == false)
+            {
+                GameObject spawnedSpell;
+                spawnedSpell = Instantiate(spell, spellPosition.position + new Vector3(-1, 2, 0), Quaternion.identity);
+                SpellController script = spawnedSpell.GetComponent<SpellController>();
+                script.FireLeft();
+            }
+
+        }
     }
 }

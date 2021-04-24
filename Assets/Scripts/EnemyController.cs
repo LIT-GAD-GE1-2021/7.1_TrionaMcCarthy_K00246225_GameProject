@@ -95,7 +95,7 @@ public class EnemyController : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.name == "Bullet")
+        if (collision.gameObject.tag == "Spell")
         {
             enemyHealth = enemyHealth - LevelManager.instance.spellDamage;
         }

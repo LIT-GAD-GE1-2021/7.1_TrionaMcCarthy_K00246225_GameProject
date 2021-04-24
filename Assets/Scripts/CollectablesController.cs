@@ -14,8 +14,7 @@ public class CollectablesController : MonoBehaviour
             }
             else if(this.gameObject.tag == "Collectable")
             {
-                LevelManager.instance.spellDamage++;
-                Debug.Log("Collected Powerup!");
+                LevelManager.instance.PowerUp();
             }
 
             Destroy(this.gameObject);

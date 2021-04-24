@@ -17,6 +17,7 @@ public class LevelManager : MonoBehaviour
     public int KeyCount = 0;
     public GameObject KeyUI;
     public int spellDamage = 1;
+    public GameObject PowerUpUI;
 
     void Start()
     {
@@ -78,5 +79,12 @@ public class LevelManager : MonoBehaviour
             }
         }
         
+    }
+
+    public void PowerUp()
+    {
+        spellDamage++;
+        Debug.Log("Collected Powerup!");
+        PowerUpUI.SetActive(true);
     }
 }
