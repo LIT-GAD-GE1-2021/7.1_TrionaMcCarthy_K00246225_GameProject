@@ -12,11 +12,12 @@ public class EnemyController : MonoBehaviour
     public float changeTime = 2;
     public LayerMask player;
     int enemyHealth = 2;
-    CapsuleCollider2D enemyHitBox;
+    PolygonCollider2D enemyHitBox;
 
     void Start()
     {
         enemy = gameObject.GetComponent<Rigidbody2D>();
+        enemyHitBox = gameObject.GetComponent<PolygonCollider2D>();
     }
 
     void Update()
@@ -98,10 +99,10 @@ public class EnemyController : MonoBehaviour
         if (collision.gameObject.tag == "Spell")
         {
             enemyHealth = enemyHealth - LevelManager.instance.spellDamage;
-        }
-        if (enemyHealth <= 0)
-        {
-            Die();
+            if (enemyHealth <= 0)
+            {
+                Die();
+            }
         }
     }
 
