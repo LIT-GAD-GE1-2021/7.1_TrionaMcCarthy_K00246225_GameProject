@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: WoodTileMap_3
   m_EditorClassIdentifier: 
   m_Sprite: {fileID: -5641712530122005352, guid: 89532bae2fde25e4191aadbf3e694ed1, type: 3}
-  m_Color: {r: 0.735849, g: 0.503293, b: 0.5146713, a: 1}
+  m_Color: {r: 0.745283, g: 0.6281187, b: 0.5941171, a: 1}
   m_Transform:
     e00: 1
     e01: 0

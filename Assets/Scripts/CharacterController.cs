@@ -85,7 +85,7 @@ public class CharacterController : MonoBehaviour
         {
             if (LevelManager.instance.characterMode == 3)
             {
-                character.velocity = new Vector2(character.velocity.x, 21);
+                character.velocity = new Vector2(character.velocity.x, 21.5f);
             }
             else
             {
@@ -147,6 +147,8 @@ public class CharacterController : MonoBehaviour
     {
         if (Input.GetKeyDown("space"))
         {
+            animator.SetTrigger("Spell");
+
             if (facingRight == true)
             {
                 GameObject spawnedSpell;
