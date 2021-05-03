@@ -30,6 +30,13 @@ public class SpellController : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
+        if(collision.gameObject.tag == "Hazard")
+        {
+            EnemyController enemyHit;
+            enemyHit = collision.gameObject.GetComponent<EnemyController>();
+            enemyHit.HitSpell();
+        }
+
         Destroy(this.gameObject);
     }
 }

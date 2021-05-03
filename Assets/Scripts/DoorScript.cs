@@ -6,11 +6,14 @@ public class DoorScript : MonoBehaviour
 {
     BoxCollider2D doorHitBox;
     CircleCollider2D doorTriggerBox;
+    Animator animator;
 
     void Start()
     {
         doorHitBox = gameObject.GetComponent<BoxCollider2D>();
         doorTriggerBox = gameObject.GetComponent<CircleCollider2D>();
+        animator = GetComponent<Animator>();
+        animator.enabled = false;
     }
 
     void OnTriggerEnter2D(Collider2D collider)
@@ -21,7 +24,7 @@ public class DoorScript : MonoBehaviour
             {
                 doorHitBox.enabled = false;
                 doorTriggerBox.enabled = false;
-                //play door animation
+                animator.enabled = true;
                 LevelManager.instance.KeyUse();
             }
         }

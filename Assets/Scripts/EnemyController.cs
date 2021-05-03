@@ -11,26 +11,39 @@ public class EnemyController : MonoBehaviour
     float elapsedTime = 0;
     public float changeTime = 2;
     public LayerMask player;
-    int enemyHealth = 2;
+    public int enemyHealth = 2;
     PolygonCollider2D enemyHitBox;
+    Animator animator;
 
     void Start()
     {
         enemy = gameObject.GetComponent<Rigidbody2D>();
         enemyHitBox = gameObject.GetComponent<PolygonCollider2D>();
+        animator = GetComponent<Animator>();
     }
 
     void Update()
     {
         PlayerDetect();
-
-        if (!playerDetected)
+        if(enemyHealth > 0)
         {
-            IdleMove();
+            if (!playerDetected)
+            {
+                IdleMove();
+            }
+            else if (playerDetected)
+            {
+                Chase();
+            }
         }
-        else if(playerDetected)
+        else
         {
-            Chase();
+            elapsedTime += Time.deltaTime;
+            if (elapsedTime > 4)
+            {
+                Destroy(this.gameObject);
+            }
+
         }
 
     }
@@ -67,17 +80,13 @@ public class EnemyController : MonoBehaviour
         else if (elapsedTime > changeTime)
         {
             enemy.velocity = new Vector2(2.5f, enemy.velocity.y);
-            Vector3 scale = transform.localScale;
-            scale.x = -1;
-            transform.localScale = scale;
+            animator.SetBool("FacingRight", true);
             facingRight = true;
         }
         else if (elapsedTime > 0)
         {
             enemy.velocity = new Vector2(-2.5f, enemy.velocity.y);
-            Vector3 scale = transform.localScale;
-            scale.x = 1;
-            transform.localScale = scale;
+            animator.SetBool("FacingRight", false);
             facingRight = false;
         }
     }
@@ -94,21 +103,20 @@ public class EnemyController : MonoBehaviour
         }
     }
 
-    void OnTriggerEnter2D(Collider2D collision)
+    public void HitSpell()
     {
-        if (collision.gameObject.tag == "Spell")
+        Debug.Log("spell hit enemy");
+        enemyHealth = enemyHealth - LevelManager.instance.spellDamage;
+        if (enemyHealth <= 0)
         {
-            enemyHealth = enemyHealth - LevelManager.instance.spellDamage;
-            if (enemyHealth <= 0)
-            {
-                Die();
-            }
+            Die();
         }
     }
+       
 
     void Die()
     {
-        //death animation
+        animator.SetTrigger("Die");
         enemyHitBox.enabled = false;
     }
 }

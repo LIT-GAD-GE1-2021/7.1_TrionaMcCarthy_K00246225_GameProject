@@ -9,7 +9,7 @@ public class CharacterController : MonoBehaviour
     public bool isGrounded = false;
     public float vspeed;
     public LayerMask groundLayer;
-    bool facingRight = false;
+    bool facingRight = true;
     public GameObject spell;
     public Transform spellPosition;
 
@@ -28,7 +28,11 @@ public class CharacterController : MonoBehaviour
             vspeed = character.velocity.y;
             animator.SetFloat("vSpeed", vspeed);
             CharacterModeSwitch();
-            Shoot();
+
+            if(LevelManager.instance.characterMode == 1)
+            {
+                Shoot();
+            }
         }
     }
 
@@ -36,7 +40,14 @@ public class CharacterController : MonoBehaviour
     {
         if (Input.GetKey("left"))
         {
-            character.velocity = new Vector2(-7, character.velocity.y);
+            if(LevelManager.instance.characterMode == 3)
+            {
+                character.velocity = new Vector2(-9, character.velocity.y);
+            }
+            else
+            {
+                character.velocity = new Vector2(-7, character.velocity.y);
+            }
             Vector3 scale = transform.localScale;
             scale.x = 0.75f;
             transform.localScale = scale;
@@ -46,7 +57,14 @@ public class CharacterController : MonoBehaviour
 
         if (Input.GetKey("right"))
         {
-            character.velocity = new Vector2(7, character.velocity.y);
+            if (LevelManager.instance.characterMode == 3)
+            {
+                character.velocity = new Vector2(9, character.velocity.y);
+            }
+            else
+            {
+                character.velocity = new Vector2(7, character.velocity.y);
+            }
             Vector3 scale = transform.localScale;
             scale.x = -0.75f;
             transform.localScale = scale;
@@ -65,8 +83,17 @@ public class CharacterController : MonoBehaviour
     {
         if (Input.GetKeyDown("up") && isGrounded || Input.GetKeyDown("c") && isGrounded)
         {
+            if (LevelManager.instance.characterMode == 3)
+            {
+                character.velocity = new Vector2(character.velocity.x, 21);
+            }
+            else
+            {
+                character.velocity = new Vector2(character.velocity.x, 19);
+            }
+            
+
             animator.SetTrigger("Jump");
-            character.velocity = new Vector2(character.velocity.x, 19);
             isGrounded = false;
             animator.SetBool("isGrounded", false);
         }
@@ -112,7 +139,7 @@ public class CharacterController : MonoBehaviour
     public void Die()
     {
         Debug.Log("Game Over");
-        //animator.SetTrigger("Death");
+        animator.SetTrigger("Death");
         //probably some other stuff idk yet
     }
 

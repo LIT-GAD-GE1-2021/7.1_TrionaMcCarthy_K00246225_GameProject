@@ -50,12 +50,11 @@ public class LevelManager : MonoBehaviour
                 NinjaIcon.SetActive(true);
             }
         }
-        else if(playerHealth <= 0)
+        else if(playerHealth <= 0 && !gameOver)
         {
             healthBar.fillAmount = 0;
-            playerHealth = -1;
-            gameOver = true;
             character.Die();
+            gameOver = true;
         }
     }
 
